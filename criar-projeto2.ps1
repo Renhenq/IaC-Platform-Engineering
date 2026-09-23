@@ -5,7 +5,13 @@ param(
 
     [Parameter(Mandatory = $true)]
     [ValidateSet("java")]
-    [string]$Linguagem
+    [string]$Linguagem,
+
+    [Parameter(Mandatory = $false)]
+    [Switch]$Docker,
+
+    [Parameter(Mandatory = $false)]
+    [Switch]$PostgreSQL
 )
 
 # configuracoes
@@ -144,6 +150,46 @@ Get-ChildItem ` # lista todos arquivos do diretorio
         -Destination $RepositorioPath ` 
         -Recurse `
         -Force
+
+
+    
+if ($Docker) {
+    $DockerPath = Join-Path $RootPath "components\docker"
+
+    if (-not (Test-Path $DockerPath)) {
+        Write-Host "Componente Docker nao encontrado."
+        exit 1
+    }
+
+    Get-ChildItem `
+        -Path $DockerPath `
+        -Force |
+        Copy-Item `
+            -Destination $RepositorioPath `
+            -Recurse `
+            -Force
+
+    Write-Host "Componente Docker criado."
+}
+
+if ($PostgreSQL) {
+    $PostgresqlPath = Join-Path $RootPath "components\postgresql"
+
+    if (-not (Test-Path $PostgresqlPath)) {
+        Write-Host "Componente PostgreSQL não encontrado."
+        exit 1
+    }
+
+    Get-ChildItem `
+        -Path $PostgresqlPath `
+        -Force |
+        Copy-Item `
+            -Destination $RepositorioPath `
+            -Recurse `
+            -Force
+
+    Write-Host "Componente PostgreSQL criado."
+}
 
 
 Write-Host "7. Criando commit..."

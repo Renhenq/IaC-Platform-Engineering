@@ -1,0 +1,6 @@
+.\criar-projeto2.ps1 -NomeProjeto "api-clientes" -Linguagem "java"
+
+.\criar-projeto2.ps1 -NomeProjeto "api-clientes" -Linguagem "java" -Docker
+
+Parametros opcionais: -Docker
+                        -PostgreSQL
