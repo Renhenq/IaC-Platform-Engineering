@@ -142,12 +142,14 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "6. Aplicando template: $Linguagem..."
 
 # Copia todos os arquivos do template
-Get-ChildItem ` # lista todos arquivos do diretorio
+# lista todos arquivos do diretorio
+Get-ChildItem `
     -Path $TemplatePath `
     -Force |
     Where-Object { $_.Name -ne ".git" } | # ignora .git
-    Copy-Item ` # copia para a pasta do projeto
-        -Destination $RepositorioPath ` 
+    # copia para a pasta do projeto
+    Copy-Item `
+        -Destination $RepositorioPath `
         -Recurse `
         -Force
 
