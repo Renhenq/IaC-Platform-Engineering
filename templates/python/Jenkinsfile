@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Instalar dependências') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Testes') {
+            steps {
+                sh 'pytest'
+            }
+        }
+    }
+}
