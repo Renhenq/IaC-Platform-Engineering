@@ -1,6 +1,102 @@
-.\criar-projeto2.ps1 -NomeProjeto "api-clientes" -Linguagem "java"
+# Plataforma de Criação de Projetos
 
-.\criar-projeto2.ps1 -NomeProjeto "api-clientes" -Linguagem "java" -Docker
+Script para criação e configuração automatizada de projetos de software a partir de uma estrutura base, permitindo selecionar linguagem, componentes, frameworks e bibliotecas.
 
-Parametros opcionais: -Docker
-                        -PostgreSQL
+## Pré-requisito
+
+É necessário configurar um **Personal Access Token (Fine-grained)** do GitHub para que a plataforma possa criar e configurar os repositórios automaticamente.
+
+No GitHub, acesse:
+
+**Settings → Developer settings → Personal access tokens → Fine-grained tokens**
+
+Crie um token com as permissões necessárias para criação e gerenciamento dos repositórios.
+
+## Configuração do token
+
+Antes de executar o script, configure o token na variável de ambiente `GITHUB_TOKEN`:
+
+```powershell
+$env:GITHUB_TOKEN="SEU_TOKEN"
+```
+
+O token será utilizado pelo Terraform para realizar as operações na API do GitHub.
+
+## Execução
+
+Execute o script informando o nome do projeto e a linguagem:
+
+```powershell
+.\criar-projeto.ps1 -NomeProjeto "api-clientes" -Linguagem "java"
+```
+
+### Parâmetros obrigatórios
+
+| Parâmetro      | Descrição                                        | Exemplo        |
+| -------------- | ------------------------------------------------ | -------------- |
+| `-NomeProjeto` | Nome do projeto e do repositório que será criado | `api-clientes` |
+| `-Linguagem`   | Linguagem utilizada no projeto                   | `java`         |
+
+### Componentes opcionais
+
+Os componentes adicionam recursos de infraestrutura ou serviços ao projeto.
+
+| Parâmetro     | Componente |
+| ------------- | ---------- |
+| `-Docker`     | Docker     |
+| `-PostgreSQL` | PostgreSQL |
+| `-Jenkins`    | Jenkins    |
+
+Exemplo:
+
+.\criar-projeto.ps1 -NomeProjeto "api-clientes" -Linguagem "java" -Docker -PostgreSQL -Jenkins
+
+```powershell
+.\criar-projeto.ps1 `
+    -NomeProjeto "api-clientes" `
+    -Linguagem "java" `
+    -Docker `
+    -PostgreSQL `
+    -Jenkins
+```
+
+### Frameworks opcionais
+
+Os frameworks adicionam dependências e configurações relacionadas ao desenvolvimento da aplicação.
+
+| Parâmetro       | Framework     |
+| --------------- | ------------- |
+| `-Hibernate`    | Hibernate     |
+| `-ApacheStruts` | Apache Struts |
+
+### Libraries opcionais
+
+As bibliotecas adicionam funcionalidades específicas ao projeto.
+
+| Parâmetro        | Biblioteca    |
+| ---------------- | ------------- |
+| `-Lombok`        | Lombok        |
+| `-JasperReports` | JasperReports |
+| `-MapStruct`     | MapStruct     |
+
+## Exemplo completo
+
+O comando abaixo cria um projeto Java com Docker, PostgreSQL, Jenkins, Hibernate, Lombok e MapStruct:
+
+.\criar-projeto.ps1 -NomeProjeto "api-clientes" -Linguagem "java" -Docker -PostgreSQL -Jenkins -Hibernate -Lombok -MapStruct
+
+ou
+
+```powershell
+.\criar-projeto.ps1 `
+    -NomeProjeto "api-clientes" `
+    -Linguagem "java" `
+    -Docker `
+    -PostgreSQL `
+    -Jenkins `
+    -Hibernate `
+    -Lombok `
+    -MapStruct
+```
+
+Após a execução, a plataforma cria o repositório no GitHub, aplica a estrutura inicial do projeto e adiciona os componentes, frameworks e bibliotecas selecionados.
