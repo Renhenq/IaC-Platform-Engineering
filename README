@@ -2,6 +2,17 @@
 
 Script para criação e configuração automatizada de projetos de software a partir de uma estrutura base, permitindo selecionar linguagem, componentes, frameworks e bibliotecas.
 
+## Arquitetura
+
+O sistema utiliza uma abordagem modular, na qual cada parte do projeto é organizada de acordo com sua responsabilidade:
+
+Templates: fornecem a estrutura inicial do projeto e os arquivos básicos da linguagem selecionada.
+Components: fornecem configurações e arquivos relacionados a infraestrutura, serviços e ferramentas externas.
+Frameworks: fornecem dependências e configurações necessárias para os frameworks selecionados.
+Libraries: fornecem dependências necessárias para adicionar funcionalidades específicas ao projeto.
+Terraform: realiza a criação e configuração da infraestrutura do repositório no GitHub.
+PowerShell: atua como camada de orquestração, recebendo os parâmetros e coordenando as etapas de criação do projeto.
+
 ## Pré-requisito
 
 É necessário configurar um **Personal Access Token (Fine-grained)** do GitHub para que a plataforma possa criar e configurar os repositórios automaticamente.
